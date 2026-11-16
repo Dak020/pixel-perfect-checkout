@@ -239,3 +239,16 @@ input::placeholder { color:var(--muted-foreground); }
 @media(min-width:1500px) { .shopping-page { max-width:1500px; margin:auto; } }
 @media(max-width:1250px) and (min-width:901px) { .bag-item { grid-template-columns:150px minmax(175px,1fr) minmax(175px,1fr) 60px; gap:12px; } .product-image { width:150px; height:188px; } .category-nav { gap:18px; } .category-nav button { font-size:15px; } .checkout-layout { gap:30px; } .bag-footer { align-items:flex-start; } }
 @media(max-width:900px) { .shopping-page { padding:0 12px; } .store-header { height:163px; } .brand-logo { width:165px; height:60px; } .header-top { padding:9px 0; } .department-tabs { left:0; top:63px; gap:25px; } .account-tools { top:65px; right:0; gap:5px; } .site-search { top:111px; width:100%; right:0; height:32px; } .site-search button { height:32px; } .category-nav { display:none; } .offer-strip { font-size:10px; height:35px; } .offer-strip button { font-size:10px; } main { padding:0; } .shopping-page h1 { font-size:27px; margin:20px 0; } .checkout-layout { display:block; } .bag-item { grid-template-columns:110px 1fr 65px; gap:12px; padding:22px 0; } .product-image { width:110px; height:138px; } .product-title { font-size:17px; } .product-details { font-size:13px; } .product-options { margin-top:12px; } .item-actions { gap:10px; flex-wrap:wrap; } .delivery-options { grid-column:2/4; grid-row:2; margin-top:5px; } .item-price { grid-column:3; grid-row:1; font-size:13px; } .bag-footer { margin-top:15px; margin-bottom:35px; flex-wrap:wrap; } .order-summary { border-top:1px solid var(--border); padding:25px 0 55px; } .product-page-layout { grid-template-columns:1fr; gap:20px; } .product-page-layout > img { width:220px; } }
+
+.promos { font-size:15px; line-height:1.75; margin-bottom:14px; }
+.summary-row.discount span:last-child { color: var(--destructive); }
+.promo-applied { display:flex; justify-content:space-between; align-items:center; font-size:13px; margin:8px 0; min-height:24px; }
+.promo-applied button { height:22px; width:22px; }
+.express-pay { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:36px; }
+.express-pay button { height:54px; border:1.5px solid var(--foreground); border-radius:0; }
+.paypal { font-weight:800; font-style:italic; font-size:22px; color:var(--primary); } .paypal em { opacity:.7; }
+.applepay { font-size:22px; font-weight:500; }
+.affirm { text-align:center; font-size:13px; margin:40px 0 20px; }
+.gift-banner { background: oklch(0.42 0.15 350); color: var(--background); text-align:center; padding:28px 16px; }
+.gift-banner .g1 { font-size:28px; letter-spacing:1px; } .gift-banner .g2 { font-size:16px; margin-top:6px; }
+.bag-icon { position:relative; display:inline-flex; } .bag-icon .bag-count { position:absolute; left:50%; top:58%; transform:translate(-50%,-50%); font-size:10px; background:none; color:inherit; }
