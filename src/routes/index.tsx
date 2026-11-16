@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { Gift, Heart, MessageCircle, Search, Send, UserRound, X } from 'lucide-react';
+import { Gift, Heart, Search, Send, UserRound, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { productsOptions } from '@/lib/shopify';
 import { useCartStore } from '@/stores/cart';
@@ -27,7 +27,6 @@ function Index() {
   const [notice, setNotice] = useState('');
   const [edit, setEdit] = useState(false);
   const [gift, setGift] = useState(false);
-  const [chat, setChat] = useState(false);
   const [applied, setApplied] = useState('');
   const [loadingPromo, setLoadingPromo] = useState(false);
 
@@ -230,7 +229,16 @@ function Index() {
             . See if you qualify
           </p>
           <div className="gift-banner-box">
-            <img src={giftBannerImg.url} alt="Earn a $50-$1,250 Gift Card" style={{ width: '100%', height: 'auto', display: 'block' }} />
+            <img
+              src="/gift-card-offer.png"
+              onError={(e) => {
+                if (giftBannerImg?.url) {
+                  (e.currentTarget as HTMLImageElement).src = giftBannerImg.url;
+                }
+              }}
+              alt="Earn a $50-$1,250 Gift Card"
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
           </div>
           {bag.error && <p role="alert" className="text-destructive">{bag.error}</p>}
         </aside>
@@ -238,7 +246,6 @@ function Index() {
     </main>
 
     {notice && <div className="notice" role="status"><p>{notice}</p><Button variant="ghost" size="icon" aria-label="Dismiss notification" onClick={() => setNotice('')}><X/></Button></div>}
-    {chat && <div className="chat-panel"><h2>Customer Care</h2><p>For assistance with your order, visit your customer account at checkout.</p><Button onClick={checkout} disabled={!line}>Open checkout</Button></div>}
-    <Button className="chat-button" size="icon" aria-label="Customer care" onClick={() => setChat(!chat)}><MessageCircle/></Button>
+
   </div>;
 }
