@@ -29,6 +29,7 @@ function Index() {
   const [gift, setGift] = useState(false);
   const [chat, setChat] = useState(false);
   const [applied, setApplied] = useState('');
+  const [loadingPromo, setLoadingPromo] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -53,6 +54,19 @@ function Index() {
     if (!bag.cart?.checkoutUrl || !line) return;
     const url = new URL(bag.cart.checkoutUrl); url.searchParams.set('channel', 'online_store');
     window.open(url.toString(), '_blank', 'noopener,noreferrer');
+  };
+
+  const handleApplyPromo = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = promo.trim().toUpperCase();
+    if (!code || loadingPromo) return;
+
+    setLoadingPromo(true);
+    setTimeout(() => {
+      setApplied(code);
+      setPromo('');
+      setLoadingPromo(false);
+    }, 1000);
   };
 
   return <div className="shopping-page">
@@ -141,9 +155,23 @@ function Index() {
             <strong>Order Total</strong>
             <strong>${Math.max(0, Number(shown ? total : 0) - (applied ? 750 : 0)).toFixed(2)}</strong>
           </div>
-          <form className="promo-field" onSubmit={e => { e.preventDefault(); const c = promo.trim().toUpperCase(); if (c) { setApplied(c); setPromo(''); } }}>
-            <input aria-label="Enter Promo Code" placeholder="Enter Promo Code" value={promo} onChange={e => setPromo(e.target.value)}/>
-            <Button variant="link" type="submit">Apply</Button>
+          <form className="promo-field" onSubmit={handleApplyPromo}>
+            <input
+              aria-label="Enter Promo Code"
+              placeholder="Enter Promo Code"
+              value={promo}
+              disabled={loadingPromo}
+              onChange={e => setPromo(e.target.value)}
+            />
+            {loadingPromo ? (
+              <div className="promo-dots" aria-label="Validating promo code">
+                <span className="dot dot-1" />
+                <span className="dot dot-2" />
+                <span className="dot dot-3" />
+              </div>
+            ) : (
+              <Button variant="link" type="submit" disabled={!promo.trim()}>Apply</Button>
+            )}
           </form>
           {applied && (
             <div className="promo-applied">
@@ -153,8 +181,19 @@ function Index() {
           )}
           <Button className="checkout-button" onClick={checkout} disabled={bag.busy || !line}>CHECKOUT</Button>
           <div className="express-pay">
-            <Button variant="outline" onClick={checkout} disabled={!line} className="flex items-center justify-center p-0">
-              <img src={paypalImg.url} alt="PayPal" style={{ maxHeight: '24px', objectFit: 'contain' }} />
+            <Button variant="outline" onClick={checkout} disabled={!line} className="flex items-center justify-center p-0 overflow-hidden">
+              <div style={{ height: '24px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img
+                  src={paypalImg.url}
+                  alt="PayPal"
+                  style={{
+                    height: '42px',
+                    objectFit: 'contain',
+                    clipPath: 'inset(10% 0 0 0)',
+                    marginTop: '-2px',
+                  }}
+                />
+              </div>
             </Button>
             <Button variant="outline" onClick={checkout} disabled={!line}>
               <span className="applepay">{'\uF8FF'}Pay</span>
