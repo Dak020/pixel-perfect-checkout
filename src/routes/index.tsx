@@ -164,7 +164,7 @@ function Index() {
               onChange={e => setPromo(e.target.value)}
             />
             {loadingPromo ? (
-              <div className="promo-dots" aria-label="Validating promo code">
+              <div className="promo-dots promo-dots-inline" aria-label="Validating promo code">
                 <span className="dot dot-1" />
                 <span className="dot dot-2" />
                 <span className="dot dot-3" />
@@ -173,6 +173,15 @@ function Index() {
               <Button variant="link" type="submit" disabled={!promo.trim()}>Apply</Button>
             )}
           </form>
+
+          {loadingPromo && (
+            <div className="promo-dots promo-dots-below" aria-label="Loading promo discount">
+              <span className="dot dot-1" />
+              <span className="dot dot-2" />
+              <span className="dot dot-3" />
+            </div>
+          )}
+
           {applied && (
             <div className="promo-applied">
               <span>Promo Applied: {applied}</span>
@@ -189,8 +198,8 @@ function Index() {
                   style={{
                     height: '42px',
                     objectFit: 'contain',
-                    clipPath: 'inset(10% 0 0 0)',
-                    marginTop: '-2px',
+                    clipPath: 'inset(14% 0 0 0)',
+                    marginTop: '-4px',
                   }}
                 />
               </div>
@@ -199,7 +208,16 @@ function Index() {
               <span className="applepay">{'\uF8FF'}Pay</span>
             </Button>
           </div>
-          <p className="affirm">Starting at $77/mo or 0% APR with <b>affirm</b>. See if you qualify</p>
+          <p className="affirm">
+            Starting at $77/mo or 0% APR with{' '}
+            <span className="affirm-brand">
+              <span className="affirm-word">affirm</span>
+              <svg className="affirm-arc" viewBox="0 0 26 18" fill="none">
+                <path d="M 2 16 A 11 11 0 0 1 24 16" stroke="#504eca" strokeWidth="2.4" strokeLinecap="round" />
+              </svg>
+            </span>
+            . See if you qualify
+          </p>
           <div className="gift-banner-box">
             <img src={giftBannerImg.url} alt="Earn a $50-$1,250 Gift Card" style={{ width: '100%', height: 'auto', display: 'block' }} />
           </div>
