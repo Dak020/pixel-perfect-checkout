@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export const Route = createFileRoute('/product/$handle')({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsOptions),
-  errorComponent: ({ error }) => <main role="alert">{error.message}</main>,
+  errorComponent: ({ error }) => <main role="alert">{error instanceof Error ? error.message : 'Unable to load product details.'}</main>,
   notFoundComponent: () => <main>No products found</main>,
   head: ({ params }) => ({ meta: [{ title: `${params.handle.replaceAll('-', ' ')} | Neiman Marcus` }, { name: 'description', content: 'Product details and shopping bag.' }, { property: 'og:title', content: `${params.handle.replaceAll('-', ' ')} | Neiman Marcus` }, { property: 'og:description', content: 'Explore product details and add to your shopping bag.' }, { property: 'og:type', content: 'product' }, { name: 'twitter:card', content: 'summary_large_image' }] }),
   component: ProductPage,

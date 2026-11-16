@@ -10,7 +10,7 @@ import sandal from '@/assets/raffia-sandal-fixed.png.asset.json';
 
 export const Route = createFileRoute('/')({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsOptions),
-  errorComponent: ({ error }) => <main role="alert">{error.message}</main>,
+  errorComponent: ({ error }) => <main role="alert">{error instanceof Error ? error.message : 'Unable to load your shopping bag.'}</main>,
   notFoundComponent: () => <main>No products found</main>,
   head: () => ({ meta: [{ title: 'Your Shopping Bag | Neiman Marcus' }, { name: 'description', content: 'Your shopping bag, delivery options, and secure checkout.' }, { property: 'og:title', content: 'Your Shopping Bag | Neiman Marcus' }, { property: 'og:description', content: 'Review your shopping bag and checkout.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' }] }),
   component: Index,
