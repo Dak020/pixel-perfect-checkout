@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep Shopify product reads in shared query options and cart mutations in the persisted Zustand store so checkout always uses a live Storefront API cart.
+- Reproduce the reference with editable HTML and cropped original image assets rather than embedding a full-page screenshot.
