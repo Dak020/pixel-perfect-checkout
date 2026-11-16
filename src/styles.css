@@ -206,10 +206,12 @@ main { padding:0 10px; }
 .order-summary { padding-top:0; font-size:13px; }
 .summary-row { display:flex; justify-content:space-between; align-items:center; line-height:18px; }
 .summary-row.total { margin-top:16px; }
-.promo-field { display:flex; height:48px; border:1px solid var(--input); margin-top:18px; }
-.promo-field input { min-width:0; width:100%; padding:0 10px; font-size:15px; outline:none; }
+
+.promo-field { display:flex; align-items:center; height:48px; border:1px solid var(--input); margin-top:18px; position:relative; }
+.promo-field input { flex:1; min-width:0; padding:0 14px; font-size:15px; outline:none; border:none; height:100%; }
 .promo-field input::placeholder { color:var(--foreground); opacity:1; }
-.promo-field button { padding:0 10px; height:100%; font-size:17px; font-weight:400; text-decoration:underline; }
+.promo-field button { padding:0 14px; height:100%; font-size:17px; font-weight:400; text-decoration:underline; }
+
 .order-summary h2 { font-size:21px; font-weight:400; margin:20px 0 24px; }
 .signin-field { display:block; width:100%; height:44px; border:1px solid var(--input); padding:0 10px; margin-bottom:22px; font-size:15px; }
 input::placeholder { color:var(--muted-foreground); }
@@ -248,7 +250,12 @@ input::placeholder { color:var(--muted-foreground); }
 .express-pay button { height:54px; border:1.5px solid var(--foreground); border-radius:0; }
 .paypal { font-weight:800; font-style:italic; font-size:22px; color:var(--primary); } .paypal em { opacity:.7; }
 .applepay { font-size:22px; font-weight:500; }
-.affirm { text-align:center; font-size:13px; margin:40px 0 20px; }
+
+.affirm { text-align:center; font-size:13px; margin:40px 0 20px; line-height:1.4; }
+.affirm-brand { position:relative; display:inline-block; font-weight:700; color:var(--foreground); }
+.affirm-word { position:relative; z-index:1; }
+.affirm-arc { position:absolute; left:23px; top:-5px; width:26px; height:18px; pointer-events:none; }
+
 .gift-banner { background: oklch(0.42 0.15 350); color: var(--background); text-align:center; padding:28px 16px; }
 .gift-banner .g1 { font-size:28px; letter-spacing:1px; } .gift-banner .g2 { font-size:16px; margin-top:6px; }
 .bag-icon { position:relative; display:inline-flex; } .bag-icon .bag-count { position:absolute; left:50%; top:58%; transform:translate(-50%,-50%); font-size:10px; background:none; color:inherit; }
@@ -257,18 +264,19 @@ input::placeholder { color:var(--muted-foreground); }
 .promo-dots {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 9px;
 }
 
 .promo-dots-inline {
-  padding: 0 14px;
+  margin-right: 28px;
+  flex-shrink: 0;
   height: 100%;
 }
 
 .promo-dots-below {
   justify-content: center;
-  margin: 18px auto 6px;
-  height: 20px;
+  margin: 18px auto;
+  height: 24px;
 }
 
 .promo-dots .dot {
