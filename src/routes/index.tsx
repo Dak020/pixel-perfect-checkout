@@ -8,7 +8,6 @@ import { useCartStore } from '@/stores/cart';
 import logo from '@/assets/neiman-logo-fixed.png.asset.json';
 import sandal from '@/assets/raffia-sandal-fixed.png.asset.json';
 import paypalImg from '@/assets/paypal_button.png.asset.json';
-import giftBannerImg from '@/assets/gift_card_offer.png.asset.json';
 
 export const Route = createFileRoute('/')({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsOptions),
@@ -229,23 +228,3 @@ function Index() {
             . See if you qualify
           </p>
           <div className="gift-banner-box">
-            <img
-              src="/gift-card-offer.png"
-              onError={(e) => {
-                if (giftBannerImg?.url) {
-                  (e.currentTarget as HTMLImageElement).src = giftBannerImg.url;
-                }
-              }}
-              alt="Earn a $50-$1,250 Gift Card"
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-          </div>
-          {bag.error && <p role="alert" className="text-destructive">{bag.error}</p>}
-        </aside>
-      </div>
-    </main>
-
-    {notice && <div className="notice" role="status"><p>{notice}</p><Button variant="ghost" size="icon" aria-label="Dismiss notification" onClick={() => setNotice('')}><X/></Button></div>}
-
-  </div>;
-}
