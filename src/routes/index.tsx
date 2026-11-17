@@ -8,6 +8,7 @@ import { useCartStore } from '@/stores/cart';
 import logo from '@/assets/neiman-logo-fixed.png.asset.json';
 import sandal from '@/assets/raffia-sandal-fixed.png.asset.json';
 import paypalImg from '@/assets/paypal_button.png.asset.json';
+import giftOffer from '@/assets/gift_card_offer_new.jpeg.asset.json';
 
 export const Route = createFileRoute('/')({
   loader: ({ context }) => context.queryClient.ensureQueryData(productsOptions),
@@ -511,8 +512,8 @@ function Index() {
           </p>
           <div className="gift-banner-box">
             <img
-              src={GIFT_BANNER_SRC}
-              alt="Earn a 0-,250 Gift Card"
+              src={giftOffer.url}
+              alt="Earn a gift card offer"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
